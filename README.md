@@ -53,6 +53,6 @@ XXXX
 - [ ] React diff
 
 ## 目录
-1. [render中使用内联函数的问题](./topic/2019/04/11_render_with_inline_function.md)
-1. [React性能优化的方法](./topic/2019/04/12_optimizing_performance.md)
-1. [React代码复用的实现方式](./topic/2019/04/15_code_reuse.md)
+1. [render中使用内联函数的问题](./topics/2019/04/11_render_with_inline_function.md)
+1. [React性能优化的方法](./topics/2019/04/12_optimizing_performance.md)
+1. [React代码复用的实现方式](./topics/2019/04/15_code_reuse.md)
