@@ -28,14 +28,14 @@ optimization: {
 
 2. 使用 [import()](https://webpack.js.org/api/module-methods#import/) 动态加载模块，注意是import()方法，不是es6的块导入方法`import X from "module"`。这个才是真正的按需加载，只有用户来到这个模块，模块才会被加载。import()方法返回的是一个promise，因此通过then方法链式操作，或者async、await操作都可以。`import('path/to/module') -> Promise`
 
-```js 
+```js
 async function getComponent () {
   var element = document.createElement('div');
 	/**
 	* 注意两点： 
 	* 1、import()方法的参数，bundlename, 接收你引入的包名
-	* 2、注意这里面的注释，webpackChunkName: "lodash" ,这个是有意义的，		webpackChunkName的值将会使独立包名被设置为lodash.bundle.js，如果你不写这个注释，那输出的独立包将会是[id].bundle.js。这里增加了可读性
-	* 
+	* 2、注意这里面的注释，webpackChunkName: "lodash" ,这个是有意义的，webpackChunkName的值将会使独立包名被设置为lodash.bundle.js
+	* ，如果你不写这个注释，那输出的独立包将会是[id].bundle.js。这里增加了可读性
 	*/
   const { default: _ } = await import(/* webpackChunkName: "lodash" */ 'lodash');
   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
