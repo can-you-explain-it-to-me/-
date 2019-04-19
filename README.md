@@ -59,3 +59,4 @@ XXXX
 1. [render中使用内联函数的问题](./topics/2019/04/11_render_with_inline_function.md)
 1. [React性能优化的方法](./topics/2019/04/12_optimizing_performance.md)
 1. [React代码复用的实现方式](./topics/2019/04/15_code_reuse.md)
+1. [React的Context概念](https://github.com/can-you-explain-it-to-me/daily-topic/blob/master/topics/2019/04/18_react_context.md)
