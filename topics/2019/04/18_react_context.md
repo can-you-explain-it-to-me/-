@@ -8,55 +8,78 @@ React是单向数据流，Context API是解决嵌套组件中层层传递props�
 
 React版本需要大于`16.6`， 如果要用到useContext钩子，版本需要`16.8`以上
 
+### 创建Context对象
+
 ```js
 // 1. 创建一个Context实例, 设置默认值
 const MyContext = React.createContext(defaultValue)
+```
 
+### 数据传递
+
+```js
 // 2. 使用Context的Provider组件包裹子组件
 class App extends React.PureComponent {
-  render() {
-    return (
-    	<MyContext.Provider value="black">
-      	<ChildComp></ChildComp>
-      </MyContext.Provider>
-    )
-  }
+    render() {
+        return (
+            <MyContext.Provider value="black">
+                <ChildComp></ChildComp>
+            </MyContext.Provider>
+        )
+    }
 }
+```
 
-// 3. 子组件中获取到Context中的值的方式
+### 子组件获Context的值
 
-// 有三种方式：
-// 3.1 子组件是类组件，两步操作：第一将Context实例赋值给class的contextType属性， 第二class组件中就可以通过this.context拿到Context的value值
+有三种方式：
+
+#### 1. 子组件为类组件
+
+两步操作：第一将Context实例赋值给class的contextType属性， 第二class组件中就可以通过this.context拿到Context的value值。该方法为类组件特有方法。
+
+```js
 class ChildComp extends PureComponent {
-  static contextType = MyContext
-  render() {
-    const val = this.context
-    // 类组件也可以借助Consumer组件来获取Context数据
-    return <span>{val}</span>
-  }
+    // contextType为约定的类的静态属性名称
+    static contextType = MyContext
+    render() {
+        // this.context也是约定的
+        const val = this.context
+        // 类组件也可以借助Consumer组件来获取Context数据
+        return <span>{val}</span>
+    }
 }
-// 3.2 子组件非类组件，而是函数组件，这时候可以用上Consumer了, Consumer组件内部使用render props
-function ChildComp() {
-  return (
-    // 这个可以提取到任意层级，只要在对应Provider内部就行
-  	<MyContext.Consumer>
-    	{val => <span>{val}</span>}
-    </MyContext.Consumer>
-  )
-}
+```
 
-// 3.3 使用useContext钩子
+#### 2. 子组件为函数组件
+
+像函数组件，没有类的静态属性，无法像上面那样的操作。这时候可以用上Consumer组件了, Consumer组件内部使用render props
+
+```js
 function ChildComp() {
-  // 传入生成的Context对象
-  const context = React.useContext(MyContext)
-  // 使用
-  return <span>{context.value}</span>
+    return (
+        // 这个可以提取到任意层级，只要在对应Provider内部就行
+        <MyContext.Consumer>
+            {val => <span>{val}</span>}
+        </MyContext.Consumer>
+    )
+}
+```
+
+#### 3. 使用useContext()钩子
+
+```js
+function ChildComp() {
+    // 传入生成的Context对象
+    const context = React.useContext(MyContext)
+    // 使用
+    return <span>{context.value}</span>
 }
 ```
 
 ## 代码实例
 
-#### 示例1：换肤功能
+### 示例1：换肤功能
 
 [![Edit Context示例](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/lpw2jjl6nl?fontsize=14)
 
