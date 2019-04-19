@@ -12,6 +12,8 @@ render里的箭头函数会使得pureComponent、shouldComponentUpdate的子组�
 
 可以参考下面这个例子，如果要传递给子组件箭头函数，应当在父组件的render方法外面包裹一层函数再传递，这样可以保证传递给子组件的箭头函数的引用是固定不变的。
 
+提炼：重点在于传递props为函数时，应当使用有固定引用地址的函数，让子组件接收到的props固定下来，避免不必要的重渲。
+
 ## 例子
 
 ```js
@@ -27,7 +29,7 @@ class App extends React.Component {
                     { id: 1, name: 'Cory' },
                     { id: 2, name: 'Meg' },
                     { id: 3, name: 'Bob'}
-                   ],
+                 	],
         };
     }
 

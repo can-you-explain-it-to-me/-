@@ -49,9 +49,7 @@ getComponent().then(component => {
 
 3. Webpack 4.6新增了prefetching和preload两大模块。(待学习补充...)
 
+## 参考文章
 
-
-
-
-
-
+1. [React16加载性能优化指南--掘金](<https://juejin.im/post/5b506ae0e51d45191a0d4ec9#heading-0>)
+2. [React官网高阶用法--代码切割技术](<https://reactjs.org/docs/code-splitting.html>)
