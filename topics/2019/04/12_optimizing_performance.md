@@ -20,7 +20,7 @@ web应用的优化角度和方法很多，这里单单讲单页应用和React自
 
 ```javascript
 optimization: {
-		splitChunks: {
+	splitChunks: {
 		chunks: 'all'
 	}
 }
